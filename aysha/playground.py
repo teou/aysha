@@ -18,7 +18,9 @@ class ChatMsg(object):
     def __repr__(self):
         return self.source + ': ' + self.content + " at " + ChatMsg.to_readable_timestamp(self.ts)
 
-
+#TODO a user can :
+#do something to someone or everyone at tomorrow 12:43
+#if success, cause 5 damage to the target
 class User(object):
     def __init__(self, name):
         self.name = name
