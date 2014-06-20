@@ -4,6 +4,7 @@ import time
 import datetime
 
 
+#test push
 class ChatMsg(object):
     def __init__(self, ts, content, source):
         self.ts = ts
