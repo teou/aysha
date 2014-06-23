@@ -19,10 +19,10 @@ class EventBus(object):
     """
     TODO doing a event bus @subscribe annotation
     seems much more difficult in python than in 
-    java.
+    java since there is not a applicationContext
+    in python :).
     def subscribe(self, event, callback):
         def __decorated(func):
-            
             def __docall(*args, **kwargs):
                 func(*args, **kwargs)
             return __docall
