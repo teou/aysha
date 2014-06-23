@@ -60,4 +60,8 @@ if __name__ == '__main__':
     greenlets = eb.pub(event, "test word haha")
     from gevent import joinall
     joinall(greenlets)
+    
+    eb.unsub_all(event, testSub)
+    greenlets2 = eb.pub(event, "2 haha 2")
+    joinall(greenlets2)
 
