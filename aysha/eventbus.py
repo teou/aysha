@@ -45,7 +45,19 @@ class EventBus(object):
 
     def pub(self, event, *args, **kwargs):
         callbacks = self.subs.get(event)
+        greenlets = []
         if callbacks:
             for k,v in callbacks.items():
-                spawn(v, *args, **kwargs)
+                greenlets.append(spawn(v, *args, **kwargs))
+        return greenlets
+
+if __name__ == '__main__':
+    eb = EventBus()
+    def testSub(test):
+        print "testSub:", test
+    event = "testSub"
+    eb.sub(event, testSub)
+    greenlets = eb.pub(event, "test word haha")
+    from gevent import joinall
+    joinall(greenlets)
 
