@@ -1,5 +1,7 @@
 #-*- coding:utf-8 -*-
 
+from gevent import spawn
+
 """
 a simple event bus
 """
@@ -45,5 +47,5 @@ class EventBus(object):
         callbacks = self.subs.get(event)
         if callbacks:
             for k,v in callbacks.items():
-                callbacks[v](*args, **kwargs)
+                spawn(v, *args, **kwargs)
 
