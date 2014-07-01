@@ -1,6 +1,9 @@
 #-*- coding:utf-8 -*-
 
-from gevent import spawn
+from greenpool import gpool
+
+EVENT_CAST_SPELL = "cast_spell"
+EVENT_SPEAK = "speak"
 
 """
 a simple event bus
@@ -45,9 +48,10 @@ class EventBus(object):
         greenlets = []
         if callbacks:
             for k, v in callbacks.items():
-                greenlets.append(spawn(v, *args, **kwargs))
+                greenlets.append(gpool.spawn(v, *args, **kwargs))
         return greenlets
 
+event_bus = EventBus()
 
 def outer_subscribe(event_bus, event):
     def wrap_callback(f):
@@ -61,7 +65,6 @@ def outer_subscribe(event_bus, event):
             f(*args, **kwargs)
         return wrapped
     return wrap_callback
-
 
 if __name__ == '__main__':
     eb = EventBus()
