@@ -30,3 +30,6 @@ class User(object):
         if callback:
             callback(self.room, frm, self, msg)
 
+def get_user_by_name(name):
+    #TODO get user by name from redis?
+    pass
