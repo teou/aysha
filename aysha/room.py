@@ -23,19 +23,19 @@ class Room(object):
     callback=function(room, frm, reciever, msg)
     """
     def broadcast(self, msg, callback=None):
-        for user in self.users:
+        for user in self.users.values():
             user.spoken(self, msg, callback)
 
     def _user_cast(self, frm, spell, targets=None):
         if targets is None:
-            targets = self.users
+            targets = self.users.values()
         spell.caster = frm
         for user in targets:
             user.damaged(spell)
 
     def _user_speak(self, frm, msg, targets=None):
         if targets is None:
-            targets = self.users
+            targets = self.users.values()
         for user in targets:
             user.spoken(frm, msg)
 
