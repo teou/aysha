@@ -29,8 +29,9 @@ class Room(object):
     def _user_cast(self, frm, spell, targets=None):
         if targets is None:
             targets = self.users
+        spell.caster = frm
         for user in targets:
-            user.damaged(msg)
+            user.damaged(spell)
 
     def _user_speak(self, frm, msg, targets=None):
         if targets is None:
