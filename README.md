@@ -1,7 +1,7 @@
 aysha
 =====
 
-maybe a game
+a game like dark room ?
 
 slow in progress
 
